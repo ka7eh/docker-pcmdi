@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+env:
+  global:
+    - REPO=pcmdi
+
+script: 
+  - travis_wait 60 docker build -t $REPO .
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker tag $REPO:latest
+- docker push $REPO
