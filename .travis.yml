@@ -4,12 +4,13 @@ services:
 
 env:
   global:
+    - COMMIT=${TRAVIS_COMMIT::8}
     - REPO=pcmdi
 
 script: 
-  - travis_wait 60 docker build -t $REPO .
+  - travis_wait 60 docker build -t $REPO:$COMMIT .
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker tag $REPO:latest
+  - docker tag $REPO:$COMMIT $REPO:latest
   - docker push $REPO
