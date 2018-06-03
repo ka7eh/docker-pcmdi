@@ -15,9 +15,9 @@ function usage {
     echo "            port_number (default 8888)"
     echo
     echo "    clean:"
-    echo "         removes unused docker images"
+    echo "         removes pcmdi docker images"
     echo "         args":
-    echo "             -f: forces removal of running and exited containers"
+    echo "             -f: forces removal of both running and exited containers"
 }
 
 case "$1" in
@@ -26,10 +26,10 @@ case "$1" in
         ;;
     jupyter)
         if [ -z "$2" ] ; then
-            echo "You specify the path to use for saving notebooks."
+            echo "Missing the path to notebooks"
             exit 1
         fi
-        echo "Notebooks will be save in ${2}"
+        echo "Notebooks will be saved in ${2}"
         echo "Open http://localhost:${3:-8888} to access Jupyter"
         docker run -it -v ${2}:/opt/notebooks -p ${3:-8888}:8888 pcmdi bash -c ". activate pcmdi && jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root --NotebookApp.token=''"
         ;;
