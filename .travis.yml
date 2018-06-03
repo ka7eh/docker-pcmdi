@@ -5,7 +5,7 @@ services:
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::8}
-    - REPO=pcmdi
+    - REPO=kavehk/pcmdi
 
 script: 
   - travis_wait 60 docker build -t $REPO:$COMMIT .
