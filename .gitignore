@@ -1,0 +1,6 @@
+*.log
+*.py[co]
+
+.ipynb_checkpoints
+tmp
+workspace
