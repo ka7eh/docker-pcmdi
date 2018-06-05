@@ -25,3 +25,5 @@ RUN conda create -n pcmdi python=2.7
 RUN /bin/bash -c "source activate pcmdi && conda install -y -c uvcdat/label/nightly -c conda-forge -c uvcdat -c pcmdi/label/nightly -c pcmdi pcmdi_metrics ipykernel"
 RUN /bin/bash -c "source activate pcmdi && python -m ipykernel install --user --name pcmdi --display-name \"Python (pcmdi)\""
 
+RUN conda create -n cmor python=2.7
+RUN /bin/bash -c "source activate cmor && conda install -y -c pcmdi -c uvcdat -c conda-forge cmor=2.9.2 cdms2=2.6 cdutil=2.6 cdtime=2.6 hdf4 netcdf4 numpy genutil"
